@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <title>Đăng xuất</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6 mt-5 mx-auto p-3 border rounded">
+              <h4>Đăng xuất thành công</h4>
+              <p>Tài khoản của bạn đã được đăng xuất khỏi hệ thống.</p>
+              <p>Nhấn <a href="/home/index">vào đây</a> để trở về trang chủ, hoặc trang web sẽ tự động chuyển hướng sau <span id="count-down" class="text-danger">5</span> giây nữa.</p>
+              <a href="/account/login" class="btn btn-success px-5">Đăng nhập</a>
+          </div>
+        </div>
+    </div>
+
+    <script>
+        let counter = 5;
+        let id = setInterval(() => {
+            counter--;
+            if(counter >= 0){
+            $("#count-down").html(counter);
+            }
+            if (counter === -1){
+            clearInterval(counter);
+            window.location.href = "/home/index";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Boostrap -->
+     <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     
+     <!-- jQuery library -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     
+     <!-- Popper JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     
+     <!-- Latest compiled JavaScript -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <title>Đăng kí</title>
+     <style>
+          body{
+               min-height: 800px;
+               background: #a3f0ba;  /* fallback for old browsers */
+               background: -webkit-linear-gradient(to right, #f1f5f0, #c1f7bc);  /* Chrome 10-25, Safari 5.1-6 */
+               background: linear-gradient(to right, #D4D3DD, #b1f3b1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          }
+
+          .error-message{
+               margin: 15px 0px;
+               padding: 5px 0px;
+               color: white;
+               text-align: center;
+               background-color: rgba(190, 33, 33, 0.897);
+               border-radius: 6px;
+          }
+     </style>
+
+</head>
+<body>
+     <div class="container py-3" style=" width:40%">
+          <div class="card card-boder border-dark">
+               <div class="card-header bg-success">
+                    <h3 class="text-center text-light">
+                         <i class="fa fa fa-briefcase"> REGISTER</i>
+                    </h3>
+               </div>
+               <div class="card-body">
+                    {% if errorMessage %}
+                         <p class="error-message">{{errorMessage}}</p>
+                    {% endif %}
+                    <form onsubmit="return validateForm()" action="/account/registerPost" method="POST">
+                         <div class="form-group">
+                              <label for="username">Tên đăng nhập</label>
+                              <input class="form-control" type="text" name="username" required>
+                         </div>
+          
+                         <div class="form-row">
+                              <div class="col-md-6">
+                                   <label for="password">Mật khẩu</label>
+                                   <input class="form-control" type="password" name="password" id="password" placeholder="Mật khẩu dài từ 6 đến 20" required>
+                              </div>
+                              <div class="col-md-6">
+                                   <label for="password">Xác nhận mật khẩu</label>
+                                   <input class="form-control" type="password" name="confirm-password" id="confirm-password" placeholder="Mậu khẩu dài từ 6 đến 20" required>
+                              </div>
+                         </div>
+          
+                         <div class="form-group">
+                              <label for="fullname">Họ và tên</label>
+                              <input class="form-control" type="text" name="fullname" required>
+                         </div>
+          
+                         <div class="form-group">
+                              <label for="email">Email</label>
+                              <input class="form-control" type="email" name="email" placeholder="abc@gmail.com" required>
+                         </div>
+          
+                         <div class="form-group">
+                              <label for="date">Ngày sinh</label>
+                              <input class="form-control" type="date" name="date" required>
+                         </div>
+                         <div class="text-center">
+                              <button class="btn btn-outline-success" type="submit">Đăng kí</button>
+                         </div>
+
+                         <div class="alert alert-danger alert-dismissible fade show my-2" id="error-alert" role="alert" style="display: none;">
+                              <span id="error-span">
+                                   
+                              </span>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                   <span aria-hidden="true">&times;</span>
+                              </button>
+                         </div>
+
+                    </form>
+               </div>
+          </div>
+     </div>
+
+     <script>
+          function displayErrorMessage(message) {
+               let errorAlert = document.getElementById('error-alert');
+               let errorSpan = document.getElementById('error-span');
+
+               errorAlert.style.display = 'block';
+               errorSpan.innerHTML = '<strong>Lỗi!</strong> '+message;
+          }
+
+          function validateForm() {
+               let passwordInput = document.getElementById('password');
+               let confirmPasswordInput = document.getElementById('confirm-password');
+               
+               if(confirmPasswordInput.value !== passwordInput.value){
+                    displayErrorMessage('Mật khẩu không khớp vui lòng kiểm tra lại');
+                    passwordInput.focus();
+                    return false;
+               }
+
+               if(passwordInput.value.length < 6 || passwordInput.value.length > 20){
+                    displayErrorMessage('Mật khẩu phải từ 6 đến 20 ký tự');
+                    passwordInput.focus();
+                    return false;
+               }
+
+               return true;
+          }
+     </script>
+     
+</body>
+</html>

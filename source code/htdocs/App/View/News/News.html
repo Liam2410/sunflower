@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Trung tâm anh ngữ Sunflower Center</title>
+    <style>
+        .divider{
+            padding: 0 3px 0 3px;
+        }
+        .carousel-indicators li {
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+        }
+
+        .header-top a{
+            color: #5cb85c;
+        }
+
+        .underline-header{
+            width: 25%;
+            border: 0;
+            border-top: 4px solid rgba(0, 0, 0, 0.2);
+        }
+        .highlight-name{
+            color: #5cb85c;
+        }
+        .round-avatar{
+            padding: 2px;
+            border: 2px solid #5cb85c;
+        }
+        .section2, .section4{
+            background-color: #1164AA;
+        }
+        .header-title{
+            color: white;
+        }
+        .header-title-hightlight{
+            color: #1164AA;
+        }
+        .section2 .english-courses, .section4 .chinese-courses{
+            padding: 15px 0px;
+            background-color: #1164AA;
+        }
+        .section1 .korean-courses, .section5 .japanese-courses{
+            padding: 15px 0px;
+            background-color: white;
+        }
+        .section6{
+            background-color: #F0F2F5;
+        }
+        .section6 .news-section{
+            padding: 15px 0px;
+        }
+        .header-news-title{
+            background-color: white;
+            border-left: #5cb85c solid 10px;
+        }
+
+        footer{
+            background-color: #2F2F2F;
+            color: white;
+        }
+
+        footer .container .active{
+            color: white;
+        }
+        footer .container p{
+            color: gray;
+        }
+        
+        footer .container a{
+            color: gray;
+        }
+
+        footer .container p:hover{
+            color: white;
+        }
+        footer .container a:hover{
+            color: white;
+        }
+
+        footer .container .copyright p:hover{
+            color: gray;
+        }
+
+        .breadcrumb{
+            background-color: #925F17;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+            width: 100%;
+        }
+
+        .breadcrumb li{
+            padding: 0px 10px;
+            color: white;
+        }
+
+        .breadcrumb li a{
+            padding: 0px 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb .active{
+            color: #FBE205;
+            font-style: italic;
+        }
+
+        .breadcrumb li a:hover{
+            text-decoration: underline;
+            color: #FBE205;
+        }
+
+        .right-side-content{
+            background-color: white;
+            border-left: #5cb85c solid 10px;
+            height: fit-content;
+        }
+
+        .right-side-content p a{
+            color: #5cb85c;
+            text-decoration: underline;
+        }
+
+        .right-side-content p a:hover{
+            color: #FBE205; 
+        }
+
+    </style>
+</head>
+<body>
+    <!--Header khi đã đăng nhập-->
+    {% if fullname %}
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col" style="font-weight: bold;">Hotline: <span class="highlight-name">0379028110</span> <span class="divider">|</span> Email: <span class="highlight-name">sunflower@gmail.com</span></div>
+                    <div class="col text-right" style="font-weight: bold;">
+                        Xin chào <a href="/account/detail">{{fullname}}</a>
+                        <span class="divider">|</span>
+                        <a href="/account/logout">Đăng xuất</a>
+                        <span class="divider">|</span>
+                        <a href="/search/index">Tìm kiếm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <!--Header khi chưa đăng nhập-->
+    {% if not fullname %}
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col" style="font-weight: bold;">Hotline: <span class="highlight-name">0379028110</span> <span class="divider">|</span> Email: <span class="highlight-name">sunflower@gmail.com</span></div>
+                    <div class="col text-right" style="font-weight: bold;">
+                        <a href="/account/login">Đăng nhập</a>
+                        <span class="divider">|</span>
+                        <a href="/account/register">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!--Nav-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <a class="navbar-brand" href="#"><img src="/App/View/Source/Image/SunflowerLogo.png" alt="Logo" style="width:200px;height: 75px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="/home/index">Trang chủ <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active mr-3">
+                    <a class="nav-link" href="#">Tin tức</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="/schedule/index">Thời khóa biểu</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="/rating/getteachers">Đánh giá</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Khóa học
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Anh">Tiếng Anh</a>
+                        <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Trung">Tiếng Trung</a>
+                        <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Hàn">Tiếng Hàn</a>
+                        <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Nhật">Tiếng Nhật</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="breadcrumb">
+        <li><a href="/home/index">Trang chủ</a></li>
+        <li><i class="fa fa-chevron-right" aria-hidden="true"></i></li>
+        <li class="active">Tin tức</li>                    
+    </ul>
+    
+    <div class="news-section mt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+
+                    {% if newsArray %}
+                        {% for news in newsArray %}
+                            <div class="card mb-4 d-flex flex-row news-card b-0 position-relative">
+                                <img src="{{news.NewsImageAddress}}" width="175px" height="fit-content">
+                
+                                <div class="card-body">
+                                    <b><p class="text-uppercase">{{news.NewsTitle}}</p></b></a>
+                                    <p>{{news.NewsDescription}}</p>
+                                    <a class="stretched-link" href="/news/getnewsdetail?id-news={{news.Id}}"></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="right-side-content col-md-4 bg-light">
+                    <form action="/news/searchnews/" method="GET" class="form-group">
+                        <input name="news-title-input" class="form-control" type="search" placeholder="Nhập tiêu đề bài báo...">
+                        <button class="btn btn-outline-success mx-auto" type="submit"><i class="fa fa-search" aria-hidden="true"></i>Tìm kiếm</button>
+                    </form>
+
+                    <h2>TIN ĐỀ XUẤT</h2>
+                    {% if recommendedNewsArray %}
+                        {% for news in recommendedNewsArray %}
+                            <p><a href="/news/getnewsdetail?id-news={{news.Id}}">{{news.NewsTitle}}</a></p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'Include/Footer.html'%}
+
+</body>
+</html>

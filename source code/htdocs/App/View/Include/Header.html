@@ -1,0 +1,32 @@
+<!--Header khi đã đăng nhập-->
+{% if fullname %}
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col" style="font-weight: bold;">Hotline: <span class="highlight-name">0379028110</span> <span class="divider">|</span> Email: <span class="highlight-name">sunflower@gmail.com</span></div>
+                <div class="col text-right" style="font-weight: bold;">
+                    Xin chào <a href="/account/detail">{{fullname}}</a>
+                    <span class="divider">|</span>
+                    <a href="/account/logout">Đăng xuất</a>
+                    <span class="divider">|</span>
+                    <a href="/search/index">Tìm kiếm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+<!--Header khi chưa đăng nhập-->
+{% if not fullname %}
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col" style="font-weight: bold;">Hotline: <span class="highlight-name">0379028110</span> <span class="divider">|</span> Email: <span class="highlight-name">sunflower@gmail.com</span></div>
+                <div class="col text-right" style="font-weight: bold;">
+                    <a href="/account/login">Đăng nhập</a>
+                    <span class="divider">|</span>
+                    <a href="/account/register">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

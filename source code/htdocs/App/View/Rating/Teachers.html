@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="/App/View/Source/Javascript/DisplayMoneyCurrency.js"></script>
+
+    <script src="/App/View/Source/Javascript/DisplayCourseDate.js"></script>
+
+    <script src="/App/View/Source/Javascript/DisplayRatingStar.js"></script>
+
+    <title>Trung tâm anh ngữ Sunflower Center</title>
+    <style>
+        .divider{
+            padding: 0 3px 0 3px;
+        }
+        .carousel-indicators li {
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+        }
+
+        .header-top a{
+            color: #5cb85c;
+        }
+
+        .underline-header{
+            width: 25%;
+            border: 0;
+            border-top: 4px solid rgba(0, 0, 0, 0.2);
+        }
+        .highlight-name{
+            color: #5cb85c;
+        }
+        .round-avatar{
+            padding: 2px;
+            border: 2px solid #5cb85c;
+        }
+        .section2, .section4{
+            background-color: #1164AA;
+        }
+        .header-title{
+            color: white;
+        }
+        .header-title-hightlight{
+            color: #1164AA;
+        }
+        .section2 .english-courses, .section4 .chinese-courses{
+            padding: 15px 0px;
+            background-color: #1164AA;
+        }
+        .section1 .korean-courses, .section5 .japanese-courses{
+            padding: 15px 0px;
+            background-color: white;
+        }
+        .section6{
+            background-color: #F0F2F5;
+        }
+        .section6 .news-section{
+            padding: 15px 0px;
+        }
+        .header-news-title{
+            background-color: white;
+            border-left: #5cb85c solid 10px;
+        }
+
+        footer{
+            background-color: #2F2F2F;
+            color: white;
+        }
+
+        footer .container .active{
+            color: white;
+        }
+        footer .container p{
+            color: gray;
+        }
+        
+        footer .container a{
+            color: gray;
+        }
+
+        footer .container p:hover{
+            color: white;
+        }
+        footer .container a:hover{
+            color: white;
+        }
+
+        footer .container .copyright p:hover{
+            color: gray;
+        }
+
+        .breadcrumb{
+            background-color: #925F17;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+            width: 100%;
+        }
+
+        .breadcrumb li{
+            padding: 0px 10px;
+            color: white;
+        }
+
+        .breadcrumb li a{
+            padding: 0px 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb .active{
+            color: #FBE205;
+            font-style: italic;
+        }
+
+        .breadcrumb li a:hover{
+            text-decoration: underline;
+            color: #FBE205;
+        }
+
+        .right-side-content{
+            background-color: white;
+            border-left: #5cb85c solid 10px;
+            height: fit-content;
+        }
+
+        .right-side-content p a{
+            color: #5cb85c;
+            text-decoration: underline;
+        }
+
+        .right-side-content p a:hover{
+            color: #FBE205; 
+        }
+
+    </style>
+</head>
+<body>
+    <!--Header khi đã đăng nhập-->
+    {% if fullname %}
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col" style="font-weight: bold;">Hotline: <span class="highlight-name">0379028110</span> <span class="divider">|</span> Email: <span class="highlight-name">sunflower@gmail.com</span></div>
+                    <div class="col text-right" style="font-weight: bold;">
+                        Xin chào <a href="/account/detail">{{fullname}}</a>
+                        <span class="divider">|</span>
+                        <a href="/account/logout">Đăng xuất</a>
+                        <span class="divider">|</span>
+                        <a href="/search/index">Tìm kiếm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <!--Header khi chưa đăng nhập-->
+    {% if not fullname %}
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col" style="font-weight: bold;">Hotline: <span class="highlight-name">0379028110</span> <span class="divider">|</span> Email: <span class="highlight-name">sunflower@gmail.com</span></div>
+                    <div class="col text-right" style="font-weight: bold;">
+                        <a href="/account/login">Đăng nhập</a>
+                        <span class="divider">|</span>
+                        <a href="/account/register">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!--Nav-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <a class="navbar-brand" href="#"><img src="/App/View/Source/Image/SunflowerLogo.png" alt="Logo" style="width:200px;height: 75px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="/home/index">Trang chủ <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="/news/getnews">Tin tức</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="/schedule/index">Thời khóa biểu</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link active" href="#">Đánh giá</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Khóa học
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Anh">Tiếng Anh</a>
+                        <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Trung">Tiếng Trung</a>
+                        <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Hàn">Tiếng Hàn</a>
+                        <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Nhật">Tiếng Nhật</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="breadcrumb">
+        <li><a href="/home/index">Trang chủ</a></li>
+        <li><i class="fa fa-chevron-right" aria-hidden="true"></i></li>
+        <li class="active">Danh sách giáo viên</li>             
+    </ul>
+    
+    <div class="news-section mt-3">
+        <div class="container">
+            {% if fullname is null %}
+                <div class="alert alert-warning">
+                    <h4 class="alert-heading"><i class="fa fa-sign-in" aria-hidden="true"></i> HÃY ĐĂNG NHẬP ĐỂ TIẾP TỤC !</h4>
+                    <br>
+                    <p>Để tiếp tục sử dụng tính năng <b>đánh giá</b> này bạn cần phải đăng nhập tài khoản của bạn vào hệ thống.</p>
+                    <hr>
+                    <div class="text-right">
+                        <a href="/account/login" class="btn btn-warning mr-2">Đăng nhập</a>
+                        <a href="/account/register" class="text-warning"><b>hoặc tạo một tài khoản mới</b></a>
+                    </div>
+                </div>
+            {% endif %}
+            
+            {% if fullname is not null %}
+                <div class="row">
+                    {% for teacher in teacherArray %}
+                        <div class="col-md-6">
+                            <div class="card-body border border-success mb-4 shadow" style="border-radius: 16px; position: relative;">
+                                <div class="row d-flex align-items-center">
+                                    <img class="rounded-circle" src="{{teacher.AvatarURL}}" width="192px" height="192px">
+                                    <div class="col-md-6">
+                                        <h3>{{teacher.Fullname}}</h3>
+                                        <h5><script>displayRatingPointToStar('{{teacher.TeacherRatingPoint}}')</script></h5>
+                                        <p><i class="fa fa-globe" aria-hidden="true"></i>
+                                            Chuyên môn: {{teacher.Language}}
+                                        </p>
+                                        <p>
+                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            Số lượng khóa học: {{teacher.NumberCourse}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <a class="stretched-link" href="/rating/TeacherRating?id-teacher={{teacher.IdTeacherCourse}}"></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'Include/Footer.html'%}
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <title>Giáo viên Sunflower</title>
+
+    <style>
+        body{
+            background-image: url(https://images.unsplash.com/photo-1585637071663-799845ad5212?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80);
+        }
+        .header-title{
+            background-color: #555;
+            padding: 10px 0px;
+        }
+
+        .title-text{
+            text-align: center;
+            color: white;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #f1f1f1;
+            position: absolute;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+            height: fit-content;
+            overflow: auto;
+        }
+        /* Sidebar links */
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+        .sidebar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Links on mouse-over */
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        
+        .dropdown-container {
+            background-color: #f1f1f1;
+            padding-left: 16px;
+        }
+
+        .image-header{
+            width: 250px;
+        }
+
+        .header-sidebar{
+            background-image: url(/App/View/Source/Image/sunflower.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 154px;
+        }
+
+        .text-block{
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1;
+            padding: 65px 0px;
+        }
+
+        .main-content{
+            padding-left: 300px;
+        }
+
+        .breadcrumb{
+            background-color: #4CAF50;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+            width: 100%;
+        }
+
+        .breadcrumb li{
+            padding: 0px 10px;
+            color: white;
+        }
+
+        .breadcrumb li a{
+            padding: 0px 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb .active{
+            color: #FBE205;
+            font-style: italic;
+        }
+
+        .breadcrumb li a:hover{
+            text-decoration: underline;
+            color: #FBE205;
+        }
+
+        .arrow {
+            border: solid #FBDD9D;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .create-news-section tr td{
+            padding: 15px 5px;
+        }
+
+        .teacher-list{
+            border-radius: 4px;
+        }
+
+        .avatar-teacher{
+            border: #4CAF50 solid 2px;
+            padding: 2px;
+        }
+
+        .schedule-table tr th{
+            text-align: center;
+        }
+
+        .schedule-table tr td{
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .row{
+            margin: 20px;
+        }
+
+        .row:hover #hover{
+            color: #555;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="header-title d-flex justify-content-between" style="background: #DCE35B;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #45B649, #DCE35B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    ">
+        <div >
+            <div class="material-icons float-left title-text shadow" style="padding: 6px 6px; background-color: #DCE35B; border-radius: 36px;">person</div>
+            <span class="title-text text-left" style="padding: 6px 6px; font-size: 24px;">Giáo viên trung tâm Sunflower</span>
+        </div>
+        <div>
+            <a href="/teacher/logout" class="title-text" style="text-decoration: none; padding: 6px 6px; font-size: 24px;">Đăng xuất</a>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="header-sidebar">
+            <p class="text-block">Sunflower Teacher</p>
+        </div>
+
+        <a class="active" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Giáo viên</a>
+        <div class="dropdown-container">
+            <a href="/teacher/getTeacherInfor">Thông tin của giáo viên</a>
+            <a href="/teacher/getTeacherSchedule">Thời khóa biểu của giáo viên</a>
+            <a href="/teacher/getTeacherCourse">Khóa học của giáo viên</a>
+            <a href="/teacher/addClass">Đăng kí khóa học mới</a>
+        </div>
+    </div>
+
+    <div class="main-content mb-3">
+        <div class="container">
+            <div class="card mt-4">
+                <div class="card card-head bg-success">
+                    <h2 class="text-center text-light">THÔNG TIN GIÁO VIÊN</h2>
+                </div>
+                <div class="card card-body bg-light">
+                    <div class="row">
+                        <div class="col-3">
+                            <img id="avatar-img" src="{{teacher.AvatarURL}}" class="rounded-circle shadow" width="250px" height="250px"/>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <h4><i class="fa fa-address-card-o" aria-hidden="true"></i> Họ và tên: {{teacher.Fullname}}</h4>
+                            </div>
+                            <div class="row">
+                                <h4><i class="fa fa-at" aria-hidden="true"></i> Email: {{teacher.Email}}</h4>
+                            </div>
+                            <div class="row">
+                                <h4><i class="fa fa-phone" aria-hidden="true"></i> Số điện thoại: {{teacher.PhoneNumber}}</h4>
+                            </div>
+                            <div class="row">
+                                <h4><i class="fa fa-comment-o" aria-hidden="true"></i> Bằng cấp: {{teacher.Degree}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <a href="/teacher/editInfoTeacher" class="btn btn-warning">Chỉnh sửa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

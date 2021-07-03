@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+	
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <title>Quản lí Sunflower</title>
+
+    <style>
+        .header-title{
+            background-color: #555;
+            padding: 10px 0px;
+        }
+
+        .title-text{
+            text-align: center;
+            color: white;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #f1f1f1;
+            position: absolute;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+            height: fit-content;
+            overflow: auto;
+        }
+        /* Sidebar links */
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+        .sidebar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Links on mouse-over */
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        
+        .dropdown-container {
+            background-color: #f1f1f1;
+            padding-left: 16px;
+        }
+
+        .image-header{
+            width: 250px;
+        }
+
+        .header-sidebar{
+            background-image: url(/App/View/Source/Image/sunflower.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 154px;
+        }
+
+        .text-block{
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1;
+            padding: 65px 0px;
+        }
+
+        .main-content{
+            padding-left: 300px;
+        }
+
+        .breadcrumb{
+            background-color: #4CAF50;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+            width: 100%;
+        }
+
+        .breadcrumb li{
+            padding: 0px 10px;
+            color: white;
+        }
+
+        .breadcrumb li a{
+            padding: 0px 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb .active{
+            color: #FBE205;
+            font-style: italic;
+        }
+
+        .breadcrumb li a:hover{
+            text-decoration: underline;
+            color: #FBE205;
+        }
+
+        .arrow {
+            border: solid #FBDD9D;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .create-news-section tr td{
+            padding: 15px 5px;
+        }
+
+        .create-course-section tr td{
+            padding: 15px 5px;
+        }
+        
+    </style>
+    
+</head>
+<body>
+
+    <div class="header-title d-flex justify-content-between" style="background: #DCE35B;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #45B649, #DCE35B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    ">
+        <div >
+            <div class="material-icons float-left title-text shadow" style="padding: 6px 6px; background-color: #DCE35B; border-radius: 36px;">manage_accounts</div>
+            <span class="title-text text-left" style="padding: 6px 6px; font-size: 24px;">Admin trung tâm Sunflower</span>
+        </div>
+        <div>
+            <a href="/admin/logout" class="title-text" style="text-decoration: none; padding: 6px 6px; font-size: 24px;">Đăng xuất</a>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="header-sidebar">
+            <p class="text-block">Sunflower Admin</p>
+        </div>
+
+        <a href="/admin/index"><i class="fa fa-th-large" aria-hidden="true"></i> Bảng điều khiển</a>
+        
+        <!--news action-->
+        <a data-toggle="collapse" href="#news-action-list" role="button" class="d-flex justify-content-between">
+            <i class="fa fa-newspaper-o">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Tin tức</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="news-action-list">
+            <a href="/admin/addnews">Thêm tin tức mới</a>
+        </div>
+
+        <!--teacher action-->
+        <a data-toggle="collapse" href="#teacher-action-list" role="button" class="d-flex justify-content-between">
+            <i class="fa fa-user-circle-o">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Giáo viên</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="teacher-action-list">
+            <a href="/admin/searchteacher">Tìm kiếm giáo viên</a>
+            <a href="/admin/getteachers">Tất cả giáo viên</a>
+            <a href="/admin/addnewteacher">Thêm giáo viên mới</a>
+        </div>
+
+        <!--student action-->
+        <a data-toggle="collapse" href="#student-action-list" role="button" class="d-flex justify-content-between">
+            <i class="fa fa-users" aria-hidden="true">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Học viên</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="student-action-list">
+            <a href="/admin/searchstudent">Tìm kiếm học viên</a>
+            <a href="/admin/getstudents">Tất cả học viên</a>
+        </div>
+
+        <!--course action-->
+        <a data-toggle="collapse" href="#course-action-list" role="button" class="d-flex justify-content-between active">
+            <i class="fa fa-graduation-cap" aria-hidden="true">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Khóa học</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="course-action-list">
+            <a href="/admin/searchcourse">Tìm kiếm khóa học</a>
+            <a href="/admin/getcourses">Tất cả khóa học</a>
+            <a href="/admin/addnewcourse">Thêm khóa học mới</a>
+        </div>
+        
+        <!--pending action-->
+        <a data-toggle="collapse" href="#pending-action-list" role="button" class="d-flex justify-content-between">
+            <i class="fa fa-tasks" aria-hidden="true">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Xét Duyệt</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="pending-action-list">
+            <a href="/admin/getpendingstudentcourse">Danh sách học viên chờ duyệt</a>
+            <a href="/admin/getpendingcourse">Danh sách khóa học chờ duyệt</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <ul class="breadcrumb">
+            <li><a href="#">Khóa học</a></li>
+            <li><i class="fa fa-chevron-right" aria-hidden="true"></i></li>
+            <li class="active">Thêm khóa học mới</li>
+        </ul>
+
+        <div class="container">
+            <form action="/admin/addNewCoursePost" method="POST" enctype="multipart/form-data">
+                <table class="create-course-section">
+                    <tr class="form-group">
+                        <td><label for="title">Tên khóa học</label></td>
+                        <td><input type="text" class="form-control" id="title" name="course-name"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td>Ảnh khóa học</td>
+                        <td>
+                            <div class="custom-file">
+                                <input type="file" name="course-image" class="custom-file-input" id="customFile"  accept="image/*">
+                                <label class="custom-file-label" for="customFile">Chọn một ảnh...</label>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="form-group">
+                        <td><label for="description">Mô tả khóa học</label></td>
+                        <td><textarea id="description" class="form-control" name="course-description" cols="100" rows="3"></textarea></td>
+                    </tr>
+
+                    <tr class="form-group">
+                        <td>
+                            <label for="end-time">Ngày bắt đầu</label>
+                        </td>
+                        <td>
+                            <input type="date" id="end-time" name="start-date-course" class="form-control">
+                        </td>
+                    </tr>
+
+                    <tr class="form-group">
+                        <td>
+                            <label for="start-time">Ngày kết thúc</label>
+                        </td>
+                        <td>
+                            <input type="date" id="start-time" name="end-date-course" class="form-control">
+                        </td>
+                    </tr>
+
+                    <tr class="form-group">
+                        <td>
+                            Ca học trong tuần
+                        </td>
+                        <td>
+                            <select name="course-time" class="custom-select" required>
+                                <option style="display: none;" selected disabled>Chọn ca lớp học bắt đầu...</option>
+                                <option value="Sáng T2, T4, T6">Sáng T2, T4, T6</option>
+                                <option value="Sáng T3, T5, T7">Sáng T3, T5, T7</option>
+                                <option value="Chiều T2, T4, T6">Chiều T2, T4, T6</option>
+                                <option value="Chiều T3, T5, T7">Chiều T3, T5, T7</option>
+                                <option value="Tối T2, T4, T6">Tối T2, T4, T6</option>
+                                <option value="Tối T3, T5, T7">Tối T3, T5, T7</option>
+                            </select>
+                        </td>
+                    </tr>
+    
+                    <tr class="form-group">
+                        <td>Ngôn ngữ</td>
+                        <td>
+                            <select name="course-language" class="custom-select" required>
+                                <option style="display: none;" selected disabled>Chọn một mục...</option>
+                                <option value="Tiếng Anh">Tiếng Anh</option>
+                                <option value="Tiếng Trung">Tiếng Trung</option>
+                                <option value="Tiếng Hàn">Tiếng Hàn</option>
+                                <option value="Tiếng Nhật">Tiếng Nhật</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr class="form-group">
+                        <td>
+                            <label for="price">Học phí</label>
+                        </td>
+                        <td>
+                            <input name="course-price" type="number" id="price" class="form-control">
+                        </td>
+                    </tr>
+
+                    <tr class="form-group">
+                        <td>
+                            <label for="slot">Số lượng học viên</label>
+                        </td>
+                        <td>
+                            <input name="course-slot" type="number" id="slot" class="form-control">
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-success">Tạo khóa học</button>
+                            <button type="reset" class="btn btn-danger">Làm lại</button>
+                        </td>
+                    </tr>
+                </table>
+                
+            </form>
+        </div>
+
+        
+
+    </div>
+
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+</body>
+</html>

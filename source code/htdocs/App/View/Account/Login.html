@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Link icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <style>
+        #view_login{
+            min-height: 800px;
+            background: #819bb3;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #D4D3DD, #819bb3);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #D4D3DD, #819bb3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .error-message{
+            margin: 15px 0px;
+            color: white;
+            text-align: center;
+            background-color: rgba(190, 33, 33, 0.897);
+            border-radius: 6px;
+        }
+    </style>
+
+    <title>Đăng nhập</title>
+</head>
+<body>
+    <div id="view_login">
+        <div class="container py-3" style=" width:40%">
+            <div class="card card-boder border-dark">
+                <div class="card-header bg-dark">
+                    <h3 class="text-center text-light">
+                        <i class="fa fa-user-circle-o"> LOGIN</i>
+                    </h3>
+                </div>
+        
+                {% if errorMessage %}
+                    <p class="error-message">{{errorMessage}}</p>
+                {% endif %}
+                <div class="card-body">
+                    <form action="/account/loginPost" method="POST" >
+                        <div class="form-group">
+                                <label for="input-email">Tên đăng nhập</label>
+                                <input name="username" type="username" class="form-control" placeholder="example" required
+                                    autofocus>
+                        </div>
+                        <div class="form-group">
+                                <label for="input-password">Mật khẩu</label>
+                                <input name="password" type="password" class="form-control"
+                                    placeholder="Mật khẩu có độ dài từ 6 đến 20" required>
+                        </div>
+                       
+                        <div class="text-center">
+                            <button class="btn btn-outline-dark"type="submit">Đăng nhập</button>
+                        </div>
+                        <p class="text-center">Chưa có tài khoản ? <a href="/account/register">Đăng ký tài khoản mới</a></p>    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

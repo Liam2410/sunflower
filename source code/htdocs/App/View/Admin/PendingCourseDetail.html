@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+	
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="/App/View/Source/Javascript/DisplayStatusPending.js"></script>
+
+    <script src="/App/View/Source/Javascript/DisplayRegisterDate.js"></script>
+
+    <title>Quản lí Sunflower</title>
+
+    <style>
+        .header-title{
+            background-color: #555;
+            padding: 10px 0px;
+        }
+
+        .title-text{
+            text-align: center;
+            color: white;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #f1f1f1;
+            position: absolute;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+            height: fit-content;
+            overflow: auto;
+        }
+        /* Sidebar links */
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+        .sidebar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Links on mouse-over */
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        
+        .dropdown-container {
+            background-color: #f1f1f1;
+            padding-left: 16px;
+        }
+
+        .image-header{
+            width: 250px;
+        }
+
+        .header-sidebar{
+            background-image: url(/App/View/Source/Image/sunflower.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 154px;
+        }
+
+        .text-block{
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1;
+            padding: 65px 0px;
+        }
+
+        .main-content{
+            padding-left: 300px;
+        }
+
+        .breadcrumb{
+            background-color: #4CAF50;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+            width: 100%;
+        }
+
+        .breadcrumb li{
+            padding: 0px 10px;
+            color: white;
+        }
+
+        .breadcrumb li a{
+            padding: 0px 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb .active{
+            color: #FBE205;
+            font-style: italic;
+        }
+
+        .breadcrumb li a:hover{
+            text-decoration: underline;
+            color: #FBE205;
+        }
+
+        .arrow {
+            border: solid #FBDD9D;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .create-news-section tr td{
+            padding: 15px 5px;
+        }
+
+        .teacher-list{
+            border-radius: 4px;
+        }
+
+        .avatar-teacher{
+            border: #4CAF50 solid 2px;
+            padding: 2px;
+        }
+        
+    </style>
+    
+</head>
+<body>
+
+    <div class="header-title d-flex justify-content-between" style="background: #DCE35B;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #45B649, #DCE35B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    ">
+        <div >
+            <div class="material-icons float-left title-text shadow" style="padding: 6px 6px; background-color: #DCE35B; border-radius: 36px;">manage_accounts</div>
+            <span class="title-text text-left" style="padding: 6px 6px; font-size: 24px;">Admin trung tâm Sunflower</span>
+        </div>
+        <div>
+            <a href="/admin/logout" class="title-text" style="text-decoration: none; padding: 6px 6px; font-size: 24px;">Đăng xuất</a>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="header-sidebar">
+            <p class="text-block">Sunflower Admin</p>
+        </div>
+
+        <a href="/admin/index"><i class="fa fa-th-large" aria-hidden="true"></i> Bảng điều khiển</a>
+        
+        <!--news action-->
+        <a data-toggle="collapse" href="#news-action-list" role="button" class="d-flex justify-content-between">
+            <i class="fa fa-newspaper-o">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Tin tức</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="news-action-list">
+            <a href="/admin/addnews">Thêm tin tức mới</a>
+        </div>
+
+        <!--teacher action-->
+        <a data-toggle="collapse" href="#teacher-action-list" role="button" class="d-flex justify-content-between">
+            <i class="fa fa-user-circle-o">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Giáo viên</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="teacher-action-list">
+            <a href="/admin/searchteacher">Tìm kiếm giáo viên</a>
+            <a href="/admin/getteachers">Tất cả giáo viên</a>
+            <a href="/admin/addnewteacher">Thêm giáo viên mới</a>
+        </div>
+
+        <!--student action-->
+        <a data-toggle="collapse" href="#student-action-list" role="button" class="d-flex justify-content-between">
+            <i class="fa fa-users" aria-hidden="true">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Học viên</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="student-action-list">
+            <a href="/admin/searchstudent">Tìm kiếm học viên</a>
+            <a href="/admin/getstudents">Tất cả học viên</a>
+        </div>
+
+        <!--course action-->
+        <a data-toggle="collapse" href="#course-action-list" role="button" class="d-flex justify-content-between">
+            <i class="fa fa-graduation-cap" aria-hidden="true">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Khóa học</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="course-action-list">
+            <a href="/admin/searchcourse">Tìm kiếm khóa học</a>
+            <a href="/admin/getcourses">Tất cả khóa học</a>
+            <a href="/admin/addnewcourse">Thêm khóa học mới</a>
+        </div>
+
+        <!--pending action-->
+        <a data-toggle="collapse" href="#pending-action-list" role="button" class="d-flex justify-content-between active">
+            <i class="fa fa-tasks" aria-hidden="true">
+                <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Xét Duyệt</span>
+            </i>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-container collapse" id="pending-action-list">
+            <a href="/admin/getpendingstudentcourse">Danh sách học viên chờ duyệt</a>
+            <a href="/admin/getpendingcourse">Danh sách khóa học chờ duyệt</a>
+        </div>
+        
+    </div>
+
+    <div class="main-content">
+        <ul class="breadcrumb">
+            <li><a href="#">Xét duyệt</a></li>
+            <li><i class="fa fa-chevron-right" aria-hidden="true"></i></li>
+            <li class="active">Chi tiết khóa học chờ duyệt</li>
+        </ul>
+
+        <div class="container">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+                        Thông tin giáo viên
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+                        Chi tiết khóa học
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">
+                        Duyệt
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="card border-success">
+                        <div class="card-header">
+                            Thông tin cá nhân
+                        </div>
+                        <div class="card-body">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-3">
+                                    <img src="{{pendingCourse.AvatarURL}}" id="avatar-img" height="192" width="192" class="avatar-teacher rounded-circle">
+                                    
+                                </div>
+                                
+                                <div class="col ml-9">
+                                    <div class="form-row">
+                                        <div class="col-7">
+                                            <label for="fullname">Họ và tên:</label>
+                                            <input name="fullname" type="text" class="form-control" id="fullname" value="{{pendingCourse.Fullname}}" readonly>
+                                        </div>
+    
+                                        <div class="col">
+                                            <label for="email">Email cá nhân:</label>
+                                            <input name="email" type="text" class="form-control" id="email" value="{{pendingCourse.Email}}" readonly>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-row">
+                                        <div class="col-7">
+                                            <label for="language">Ngôn ngữ chuyên môn:</label>
+                                            <input class="form-control" name="course-language" id="language" value="{{pendingCourse.Language}}" readonly>
+                                            
+                                        </div>
+    
+                                        <div class="col">
+                                            <label for="phone-number">Số điện thoại liên lạc:</label>
+                                            <input name="phone" type="tel" class="form-control" id="phone-number" value="{{pendingCourse.PhoneNumber}}" readonly>
+                                        </div>
+                                    </div>
+                                    
+                                    <label for="degree">Trình độ chuyên môn:</label>
+                                    <textarea name="degree" id="degree" class="form-control" readonly>{{pendingCourse.Degree}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="float-right">
+                                <a class="btn btn-info" href="/admin/getteacherdetail?username={{pendingCourse.Username}}">Xem thêm về giáo viên này</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="card border-success">
+                        <div class="card-header">
+                            Thông tin chi tiết
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="{{pendingCourse.CourseImageAddress}}" class="avatar-teacher" height="300px" width="280px">
+                                </div>
+                                
+                                <div class="col-md ml-5">
+                                    <form class="form-group">          
+                                        <div class="form-row">
+                                            <div class="col-7">
+                                                <label for="name-course">Tên khóa học:</label>
+                                                <input type="text" class="form-control" id="name-course" value="{{pendingCourse.CourseName}}" readonly>
+                                            </div>
+    
+                                            <div class="col">
+                                                <label for="language">Ngôn ngữ</label>
+                                                <input type="text" class="form-control" id="language" value="{{pendingCourse.CourseLanguage}}" readonly>
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-row">
+                                            <div class="col-7">
+                                                <div class="form-row">
+                                                    <div class="col-6">
+                                                        <label for="start-date">Ngày bắt đầu:</label>
+                                                        <input type="date" class="form-control" id="start-date" value="{{pendingCourse.StartDateCourse}}" readonly>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label for="end-date">Ngày kết thúc:</label>
+                                                        <input type="date" class="form-control" id="end-date" value="{{pendingCourse.EndDateCourse}}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="col">
+                                                <label for="end-date">Ca học trong ngày:</label>
+                                                <input type="text" class="form-control" id="end-date" value="{{pendingCourse.CourseTime}}" readonly>
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-row">
+                                            <div class="col-7">
+                                                <label for="price">Giá tiền:</label>
+                                                <input type="number" class="form-control" id="price" value="{{pendingCourse.CoursePrice}}" readonly>
+                                            </div>
+    
+                                            <div class="col">
+                                                <label for="number-student">Số lượng học viên: </label>
+                                                <input type="number" class="form-control" id="number-student" value="{{pendingCourse.CourseSlot}}" readonly>
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-row">
+                                            <label for="description">Mô tả:</label>
+                                            <textarea id="description" class="form-control" aria-valuetext="xadas" readonly>{{pendingCourse.CourseDescription}}</textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <div class="card text-center border-success w-75 m-auto">
+                        <div class="card-header">
+                            Xét duyệt
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Đồng ý thêm khóa học mới với giáo viên này ?</h5>
+                            <p class="card-text"><small>Lựa chọn một mục bên dưới</small></p>
+                            <a href="/admin/addPendingCourse?id-pending-course={{pendingCourse.IdPendingCourse}}" class="btn btn-outline-success mx-2">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Duyệt khóa học
+                            </a>
+                            <a href="/admin/deletePendingCourse?id-pending-course={{pendingCourse.IdPendingCourse}}" class="btn btn-outline-danger mx-2">
+                                <i class="fa fa-ban" aria-hidden="true"></i>
+                                Không duyệt khóa học
+                            </a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Ngày đăng kí: <script>displayRegisterDate('{{pendingCourse.RegisterDate}}')</script>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

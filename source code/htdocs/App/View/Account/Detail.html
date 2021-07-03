@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Boostrap -->
+     <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     
+     <!-- jQuery library -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     
+     <!-- Popper JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     
+     <!-- Latest compiled JavaScript -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+     <!-- Load an icon library -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <title>Detail</title>
+     <style>
+
+          .divider{
+               padding: 0 3px 0 3px;
+          }
+
+          .header-top a{
+               color: #5cb85c;
+          }
+
+          .highlight-name{
+               color: #5cb85c;
+          }
+
+          .detail-section-background{
+               background-color: #eef3a3;
+               background-image: linear-gradient(160deg, #eef0e8 0%, #eef5b5 100%);
+               border-top-left-radius: 8px; border-bottom-left-radius: 8px;
+          }
+    
+          #account_detail_form{
+               border-radius: 8px;
+               background-color: white;
+          }
+    
+          #account_avtar_column{
+               background-color: #b3e28c;
+               background-image: linear-gradient(160deg, #e0e9e2 0%, #b0d8d3 100%);
+               border-top-left-radius: 8px; border-bottom-left-radius: 8px;
+          }
+
+          footer{
+               background-color: #2F2F2F;
+               color: white;
+          }
+
+          footer .container .active{
+               color: white;
+          }
+          footer .container p{
+               color: gray;
+          }
+          
+          footer .container a{
+               color: gray;
+          }
+
+          footer .container p:hover{
+               color: white;
+          }
+          footer .container a:hover{
+               color: white;
+          }
+
+          footer .container .copyright p:hover{
+               color: gray;
+          }
+
+          .breadcrumb{
+               background-color: #925F17;
+               box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+               width: 100%;
+          }
+
+          .breadcrumb li{
+               padding: 0px 10px;
+               color: white;
+          }
+
+          .breadcrumb li a{
+               padding: 0px 10px;
+               color: white;
+               text-decoration: none;
+          }
+
+          .breadcrumb .active{
+               color: #FBE205;
+               font-style: italic;
+          }
+
+          .breadcrumb li a:hover{
+               text-decoration: underline;
+               color: #FBE205;
+          }
+     </style>
+</head>
+<body>
+
+     <!--Header khi đã đăng nhập-->
+    {% if fullname %}
+          <div class="header-top">
+               <div class="container">
+                    <div class="row">
+                         <div class="col" style="font-weight: bold;">Hotline: <span class="highlight-name">0379028110</span> <span class="divider">|</span> Email: <span class="highlight-name">sunflower@gmail.com</span></div>
+                         <div class="col text-right" style="font-weight: bold;">
+                              Xin chào <a href="/account/detail">{{fullname}}</a>
+                              <span class="divider">|</span>
+                              <a href="/account/logout">Đăng xuất</a>
+                              <span class="divider">|</span>
+                              <a href="/search/index">Tìm kiếm</a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     {% endif %}
+     <!--Header khi chưa đăng nhập-->
+     {% if not fullname %}
+          <div class="header-top">
+               <div class="container">
+                    <div class="row">
+                         <div class="col" style="font-weight: bold;">Hotline: <span class="highlight-name">0379028110</span> <span class="divider">|</span> Email: <span class="highlight-name">sunflower@gmail.com</span></div>
+                         <div class="col text-right" style="font-weight: bold;">
+                              <a href="/account/login">Đăng nhập</a>
+                              <span class="divider">|</span>
+                              <a href="/account/register">Đăng ký</a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     {% endif %}
+
+     <div class="detail-section-background">
+          <!--Nav-->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+               <a class="navbar-brand" href="#"><img src="/App/View/Source/Image/SunflowerLogo.png" alt="Logo" style="width:200px;height: 75px;"></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto">
+                         <li class="nav-item mr-3">
+                              <a class="nav-link" href="/home/index">Trang chủ <span class="sr-only">(current)</span></a>
+                         </li>
+                         <li class="nav-item mr-3">
+                              <a class="nav-link" href="/news/getnews">Tin tức</a>
+                         </li>
+                         <li class="nav-item mr-3">
+                              <a class="nav-link" href="/schedule/index">Thời khóa biểu</a>
+                         </li>
+                         <li class="nav-item mr-3">
+                              <a class="nav-link" href="/rating/getteachers">Đánh giá</a>
+                          </li>
+                         <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Khóa học
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                   <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Anh">Tiếng Anh</a>
+                                   <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Trung">Tiếng Trung</a>
+                                   <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Hàn">Tiếng Hàn</a>
+                                   <a class="dropdown-item" href="/course/searchcourse?course-name-input=&course-language=Tiếng Nhật">Tiếng Nhật</a>
+                              </div>
+                         </li>
+                    </ul>
+               </div>
+          </nav>
+     
+          <ul class="breadcrumb">
+               <li><a href="/home/index">Trang chủ</a></li>
+               <li><i class="fa fa-chevron-right" aria-hidden="true"></i></li>
+               <li class="active">Chỉnh sửa thông tin cá nhân</li>                    
+           </ul>
+     
+          <div class="detail-section pt-1 pb-5">
+               <div class="container">
+                    {% if message %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                         {{message|raw}}
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+                    {% endif %}
+               
+                    {% if account %}
+                    <form action="/account/save" method="POST" enctype="multipart/form-data">
+                         <div class="row">
+                              <ul class="nav nav-tabs">
+                                   <li class="nav-item">
+                                        <a class="nav-link active" style="border-top-color: #5cb85c; border-top-width: 5px;">
+                                             <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                             Thông tin cá nhân
+                                        </a>
+                                   </li>
+                                   <li class="nav-item bg-light">
+                                        <a class="nav-link text-dark" href="/account/changepassword">
+                                             <i class="fa fa-lock" aria-hidden="true"></i>
+                                             Đổi mật khẩu
+                                        </a>
+                                   </li>
+                              </ul>
+                         </div>
+                         <div class="row border-success shadow" id="account_detail_form">
+                              <div id="account_avtar_column" class="col-md-4 py-2 text-center d-flex align-items-center justify-content-center">
+                                   <div class="">
+                                        <img class="rounded-circle" src="{{account.AvatarURL}}" alt="avatar" id="avatar-img" width="192px" height="192px">
+               
+                                        <div class="custom-file mt-3">
+                                             <input type="file" style="display: none;" id="customFile" name="avatar-image"
+                                                  accept="image/*" onchange="readURL(this)">
+                                             <label class="btn btn-outline-dark" for="customFile">
+                                                  <i class="fa fa-camera" aria-hidden="true"></i> Đổi ảnh đại diện
+                                             </label>
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="col-md-8 py-3">
+                                   <div class="form-group">
+                                        <div class="col">
+                                             <label for="fullname">Họ và tên</label>
+                                             <input class="form-control" type="text" value="{{account.Fullname}}" name="fullname" required>
+                                        </div>
+                                   </div>
+                                   <div class="form-group">
+                                        <div class="col">
+                                             <label for="email">Email</label>
+                                             <input class="form-control" type="email" name="email" value="{{account.Email}}" required>
+                                        </div>
+                                   </div>
+                                   <div class="form-group">
+                                        <div class="col">
+                                             <label for="date">Ngày sinh</label>
+                                             <input class="form-control" type="date" name="date" value="{{account.DateOfBirth}}" required>
+                                        </div>
+                                   </div>
+                                   <div class="form-group">
+                                        <div class="col">
+                                             <button class="btn btn-outline-info" type="submit">Cập nhật</button>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </form>
+                    {% endif %}
+               </div>
+          </div>
+     </div>
+
+
+     {% include 'Include/Footer.html'%}
+    
+     <script>
+          function truncate(n, len) {
+               var ext = n.substring(n.lastIndexOf(".") + 1, n.length).toLowerCase();
+               var filename = n.replace('.' + ext,'');
+               if(filename.length <= len) {
+                    return n;
+               }
+               filename = filename.substr(0, len) + (n.length > len ? '[...]' : '');
+               return filename + '.' + ext;
+          };
+
+          // Add the following code if you want the name of the file appear on select
+          $(".custom-file-input").on("change", function() {
+               var fileName = $(this).val().split("\\").pop();
+
+               fileName = truncate(fileName, 10);
+
+               $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+          });
+     </script>
+     
+     <script>
+          function readURL(input){
+               if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+          
+                    reader.onload = function (e) {
+                         $('#avatar-img')
+                         .attr('src', e.target.result);
+                    };
+                   reader.readAsDataURL(input.files[0]);
+               }
+          }
+     </script>
+     
+</body>
+</html>
