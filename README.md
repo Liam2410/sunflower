@@ -7,7 +7,7 @@
 ## Hướng dẫn sử dụng:
 *	Chép tất cả các file nằm trong thư mục source code vào htdocs của máy tính.
 *	Mở xampp control và khởi động Apache với MySQL.
-*	Import hệ cơ sở dữ liệu bằng tập tin SunflowerDatabase.sql thư mục source code.
+*	Import hệ cơ sở dữ liệu bằng tập tin SunflowerDatabase.sql thư mục source code/htdocs.
 
 ## Các tài khoản được sử dụng để đăng nhập:
 ### Tài khoản học viên:
